@@ -1,9 +1,8 @@
 package com.qy25.sm.entity;
 
-import java.util.Date;
+import com.qy25.sm.entity.base.BaseEntity;
 
-public class Supper {
-    private Long id;
+public class Supper extends BaseEntity {
 
     private String supperName;
 
@@ -19,21 +18,9 @@ public class Supper {
 
     private String supperBankCode;
 
-    private Date addTime;
 
-    private Long createrId;
 
-    private Date updateTime;
 
-    private Long updateId;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getSupperName() {
         return supperName;
@@ -91,35 +78,5 @@ public class Supper {
         this.supperBankCode = supperBankCode == null ? null : supperBankCode.trim();
     }
 
-    public Date getAddTime() {
-        return addTime;
-    }
 
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
-    }
-
-    public Long getCreaterId() {
-        return createrId;
-    }
-
-    public void setCreaterId(Long createrId) {
-        this.createrId = createrId;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Long getUpdateId() {
-        return updateId;
-    }
-
-    public void setUpdateId(Long updateId) {
-        this.updateId = updateId;
-    }
 }

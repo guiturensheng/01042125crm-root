@@ -1,9 +1,8 @@
 package com.qy25.sm.entity;
 
-import java.util.Date;
+import com.qy25.sm.entity.base.BaseEntity;
 
-public class Brand {
-    private String id;
+public class Brand extends BaseEntity {
 
     private String brandName;
 
@@ -13,21 +12,9 @@ public class Brand {
 
     private String brandLogo;
 
-    private Date addTime;
 
-    private Long createrId;
 
-    private Date updateTime;
 
-    private Long updateId;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
 
     public String getBrandName() {
         return brandName;
@@ -61,35 +48,5 @@ public class Brand {
         this.brandLogo = brandLogo == null ? null : brandLogo.trim();
     }
 
-    public Date getAddTime() {
-        return addTime;
-    }
 
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
-    }
-
-    public Long getCreaterId() {
-        return createrId;
-    }
-
-    public void setCreaterId(Long createrId) {
-        this.createrId = createrId;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Long getUpdateId() {
-        return updateId;
-    }
-
-    public void setUpdateId(Long updateId) {
-        this.updateId = updateId;
-    }
 }

@@ -3,6 +3,7 @@ package com.qy25.sm.mapper.base;
 import com.qy25.sm.entity.Brand;
 import com.qy25.sm.entity.BrandExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @Date: 2021/1/4 21:31
  * @Description:
  */
+@Repository
 public interface BaseMapper<T,ID> {
     long countByExample(Object example);
 

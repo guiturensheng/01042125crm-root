@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qy25.sm.mapper.SupperMapper">
+  <resultMap id="BaseResultMap" type="com.qy25.sm.entity.Supper">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="supper_name" jdbcType="VARCHAR" property="supperName" />
+    <result column="supper_contact" jdbcType="VARCHAR" property="supperContact" />
+    <result column="supper_phone" jdbcType="VARCHAR" property="supperPhone" />
+    <result column="supper_email" jdbcType="VARCHAR" property="supperEmail" />
+    <result column="supper_address" jdbcType="VARCHAR" property="supperAddress" />
+    <result column="supper_bank" jdbcType="VARCHAR" property="supperBank" />
+    <result column="supper_bank_code" jdbcType="VARCHAR" property="supperBankCode" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="creater_id" jdbcType="BIGINT" property="createrId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, supper_name, supper_contact, supper_phone, supper_email, supper_address, supper_bank, 
+    supper_bank_code, add_time, creater_id, update_time, update_id
+  </sql>
+  <select id="selectByExample" parameterType="com.qy25.sm.entity.SupperExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_supper
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_supper
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_supper
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qy25.sm.entity.SupperExample">
+    delete from t_supper
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qy25.sm.entity.Supper">
+    insert into t_supper (id, supper_name, supper_contact, 
+      supper_phone, supper_email, supper_address, 
+      supper_bank, supper_bank_code, add_time, 
+      creater_id, update_time, update_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{supperName,jdbcType=VARCHAR}, #{supperContact,jdbcType=VARCHAR}, 
+      #{supperPhone,jdbcType=VARCHAR}, #{supperEmail,jdbcType=VARCHAR}, #{supperAddress,jdbcType=VARCHAR}, 
+      #{supperBank,jdbcType=VARCHAR}, #{supperBankCode,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{createrId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qy25.sm.entity.Supper">
+    insert into t_supper
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="supperName != null">
+        supper_name,
+      </if>
+      <if test="supperContact != null">
+        supper_contact,
+      </if>
+      <if test="supperPhone != null">
+        supper_phone,
+      </if>
+      <if test="supperEmail != null">
+        supper_email,
+      </if>
+      <if test="supperAddress != null">
+        supper_address,
+      </if>
+      <if test="supperBank != null">
+        supper_bank,
+      </if>
+      <if test="supperBankCode != null">
+        supper_bank_code,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="createrId != null">
+        creater_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="supperName != null">
+        #{supperName,jdbcType=VARCHAR},
+      </if>
+      <if test="supperContact != null">
+        #{supperContact,jdbcType=VARCHAR},
+      </if>
+      <if test="supperPhone != null">
+        #{supperPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="supperEmail != null">
+        #{supperEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="supperAddress != null">
+        #{supperAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="supperBank != null">
+        #{supperBank,jdbcType=VARCHAR},
+      </if>
+      <if test="supperBankCode != null">
+        #{supperBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createrId != null">
+        #{createrId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qy25.sm.entity.SupperExample" resultType="java.lang.Long">
+    select count(*) from t_supper
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_supper
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.supperName != null">
+        supper_name = #{record.supperName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supperContact != null">
+        supper_contact = #{record.supperContact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supperPhone != null">
+        supper_phone = #{record.supperPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supperEmail != null">
+        supper_email = #{record.supperEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supperAddress != null">
+        supper_address = #{record.supperAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supperBank != null">
+        supper_bank = #{record.supperBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supperBankCode != null">
+        supper_bank_code = #{record.supperBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createrId != null">
+        creater_id = #{record.createrId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_supper
+    set id = #{record.id,jdbcType=BIGINT},
+      supper_name = #{record.supperName,jdbcType=VARCHAR},
+      supper_contact = #{record.supperContact,jdbcType=VARCHAR},
+      supper_phone = #{record.supperPhone,jdbcType=VARCHAR},
+      supper_email = #{record.supperEmail,jdbcType=VARCHAR},
+      supper_address = #{record.supperAddress,jdbcType=VARCHAR},
+      supper_bank = #{record.supperBank,jdbcType=VARCHAR},
+      supper_bank_code = #{record.supperBankCode,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      creater_id = #{record.createrId,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qy25.sm.entity.Supper">
+    update t_supper
+    <set>
+      <if test="supperName != null">
+        supper_name = #{supperName,jdbcType=VARCHAR},
+      </if>
+      <if test="supperContact != null">
+        supper_contact = #{supperContact,jdbcType=VARCHAR},
+      </if>
+      <if test="supperPhone != null">
+        supper_phone = #{supperPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="supperEmail != null">
+        supper_email = #{supperEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="supperAddress != null">
+        supper_address = #{supperAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="supperBank != null">
+        supper_bank = #{supperBank,jdbcType=VARCHAR},
+      </if>
+      <if test="supperBankCode != null">
+        supper_bank_code = #{supperBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createrId != null">
+        creater_id = #{createrId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qy25.sm.entity.Supper">
+    update t_supper
+    set supper_name = #{supperName,jdbcType=VARCHAR},
+      supper_contact = #{supperContact,jdbcType=VARCHAR},
+      supper_phone = #{supperPhone,jdbcType=VARCHAR},
+      supper_email = #{supperEmail,jdbcType=VARCHAR},
+      supper_address = #{supperAddress,jdbcType=VARCHAR},
+      supper_bank = #{supperBank,jdbcType=VARCHAR},
+      supper_bank_code = #{supperBankCode,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      creater_id = #{createrId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
